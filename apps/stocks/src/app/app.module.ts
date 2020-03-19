@@ -40,6 +40,7 @@ import { environment } from '../environments/environment';
     StocksDataAccessPriceQueryModule
   ],
   providers: [{ provide: StocksAppConfigToken, useValue: environment }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [RouterModule]
 })
 export class AppModule {}
