@@ -1,11 +1,10 @@
 import {
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   Input,
   OnInit
 } from '@angular/core';
-import { Observable } from 'rxjs';
+import { ChartTypes } from '../../enum/chart.enum'
 
 @Component({
   selector: 'coding-challenge-chart',
@@ -28,7 +27,7 @@ export class ChartComponent implements OnInit {
   ngOnInit() {
     this.chart = {
       title: '',
-      type: 'LineChart',
+      type: ChartTypes.LINE_CHART,
       data: [],
       columnNames: ['period', 'close'],
       options: { title: `Stock price`, width: '600', height: '400' }

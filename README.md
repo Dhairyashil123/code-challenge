@@ -16,3 +16,9 @@ Task 1 comments -
     1. Chart is not loaded because data send to chart component is an observable type, so added async 		pipe  to pass data to chart component. 
     2. Need to add API key in environment.ts file to get the application connect with backend API.
 
+Additional comment like:
+I have explored multiple chart types - LineChart, BarChart, PieChart.
+Created an enum to contain these values. Further we can bind this enum with UI (dropdown), so user can make the selection for chart as per need.
+Also attached different chart screenshots for reference.
+In code, we are referring LineChart only but we can also think of making the selection dynamic as mentioned above. 
+
