@@ -4,7 +4,10 @@ import {
   MatFormFieldModule,
   MatInputModule,
   MatSelectModule,
-  MatButtonModule
+  MatButtonModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MAT_DATE_LOCALE
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { SharedUiChartModule } from '@coding-challenge/shared/ui/chart';
@@ -22,8 +25,11 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
-    SharedUiChartModule
+    SharedUiChartModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  declarations: [StocksComponent]
+  declarations: [StocksComponent],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'en-GB' }]
 })
 export class StocksFeatureShellModule {}

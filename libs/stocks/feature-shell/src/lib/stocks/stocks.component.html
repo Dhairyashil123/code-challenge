@@ -1,40 +1,36 @@
 <form [formGroup]="stockPickerForm">
   <mat-form-field>
     <input
-      type="text"
-      name="symbol"
-      id="stocks-symbol"
-      title="Symbol input field"
-      aria-label="Symbol"
       matInput
       placeholder="Symbol e.g AAPL"
       formControlName="symbol"
       value=""
     />
     <mat-error
-      ><span for="symbol"
+      ><span
         *ngIf="
           !stockPickerForm.get('symbol').valid &&
           stockPickerForm.get('symbol').touched
         "
-        >Please enter a symbol</span
+        >{{stockLabels.SYMBOL_LABEL_TEXT}}</span
       >
     </mat-error>
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label aria-label="Favorite time period">Favorite time period</mat-label>
-    <mat-select aria-label="Period select box" name="period" role="listbox" formControlName="period">
-      <mat-option
-        *ngFor="let timePeriod of timePeriods"
-        [value]="timePeriod.value"
-      >
-        {{ timePeriod.viewValue }}
-      </mat-option>
-    </mat-select>
+    <mat-label>{{stockLabels.FROM_DATE_LABEL_TEXT}}</mat-label>
+    <input matInput [matDatepicker]="fromDate" [max]="tomorrow" formControlName="fromDate" (dateChange)="dateChanged('from')">
+    <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+    <mat-datepicker #fromDate></mat-datepicker>
   </mat-form-field>
 
-  <button tabindex="0" id="go-btn" aria-label="Submit" title="Go button" (click)="fetchQuote()" mat-raised-button>Go</button>
+  <mat-form-field>
+    <mat-label>{{stockLabels.TO_DATE_LABEL_TEXT}}</mat-label>
+    <input matInput [matDatepicker]="toDate" [max]="tomorrow" [min]="fromDate" formControlName="toDate" (dateChange)="dateChanged('to')">
+    <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+    <mat-datepicker #toDate></mat-datepicker>
+  </mat-form-field>
+  <button (click)="fetchQuote()" mat-raised-button>{{stockButtons.GO_BUTTON}}</button>
 </form>
 
-<coding-challenge-chart [data$]="quotes$ | async"></coding-challenge-chart>
+<coding-challenge-chart [data$]="quotes$"></coding-challenge-chart>

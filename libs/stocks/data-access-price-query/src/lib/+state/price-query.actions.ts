@@ -5,7 +5,13 @@ export enum PriceQueryActionTypes {
   SelectSymbol = 'priceQuery.selectSymbol',
   FetchPriceQuery = 'priceQuery.fetch',
   PriceQueryFetched = 'priceQuery.fetched',
-  PriceQueryFetchError = 'priceQuery.error'
+  PriceQueryFetchError = 'priceQuery.error',
+  FilterQuote = 'priceQuery.filterQuote'
+}
+
+export class FilterQuote implements Action {
+  readonly type = PriceQueryActionTypes.FilterQuote;
+  constructor(public fromDate: Date, public toDate: Date) {}
 }
 
 export class FetchPriceQuery implements Action {
@@ -32,7 +38,8 @@ export type PriceQueryAction =
   | FetchPriceQuery
   | PriceQueryFetched
   | PriceQueryFetchError
-  | SelectSymbol;
+  | SelectSymbol
+  | FilterQuote;
 
 export const fromPriceQueryActions = {
   FetchPriceQuery,
