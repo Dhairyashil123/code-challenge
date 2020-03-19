@@ -1,8 +1,9 @@
 <google-chart
-  *ngIf="data"
+  *ngIf="data$"
+  aria-label="Google chart"
   [title]="chart.title"
   [type]="chart.type"
-  [data]="chartData"
+  [data]="data$"
   [columnNames]="chart.columnNames"
   [options]="chart.options"
 >
