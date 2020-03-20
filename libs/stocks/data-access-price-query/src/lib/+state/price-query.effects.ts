@@ -7,6 +7,8 @@ import {
 import { Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
 import { map } from 'rxjs/operators';
+import { API_CONSTANT } from '../constant/api-constant';
+
 import {
   FetchPriceQuery,
   PriceQueryActionTypes,
@@ -24,9 +26,7 @@ export class PriceQueryEffects {
       run: (action: FetchPriceQuery, state: PriceQueryPartialState) => {
         return this.httpClient
           .get(
-            `${this.env.apiURL}/beta/stock/${action.symbol}/chart/${
-              action.period
-            }?token=${this.env.apiKey}`
+            `${this.env.apiURL}/${API_CONSTANT.FETCH_QUOTES}/${action.period}/${action.symbol}`
           )
           .pipe(
             map(resp => new PriceQueryFetched(resp as PriceQueryResponse[]))
